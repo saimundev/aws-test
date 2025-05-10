@@ -5,7 +5,7 @@ import "./App.css";
 
 function App() {
   const [count, setCount] = useState(0);
-  const [post, setPost] = useState(null);
+  const [post, setPost] = useState<{id: number, title: string}| null>(null);
 
   useEffect(() => {
     fetch(`${import.meta.env.VITE_BASE_URL}todos/1`)
