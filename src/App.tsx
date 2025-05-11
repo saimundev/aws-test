@@ -5,10 +5,10 @@ import "./App.css";
 
 function App() {
   const [count, setCount] = useState(0);
-  const [post, setPost] = useState<{id: number, title: string}| null>(null);
+  const [post, setPost] = useState<any | null>(null);
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_BASE_URL}todos/1`)
+    fetch(`${import.meta.env.VITE_BASE_URL}posts`)
       .then((response) => response.json())
       .then((data) => setPost(data));
   }, []);
@@ -32,8 +32,14 @@ function App() {
           Edit <code>src/App.tsx</code> and save to test HMR
         </p>
       </div>
-      <h1>{post?.id}</h1>
-      <h3>{post?.title}</h3>
+
+      {post?.map((item: any) => (
+        <div key={item.id} className="card">
+          <h2>{item.title}</h2>
+          <p>{item.body}</p>
+        </div>
+      ))}
+
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
